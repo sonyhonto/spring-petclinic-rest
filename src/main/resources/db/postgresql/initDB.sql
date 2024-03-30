@@ -84,19 +84,19 @@ CREATE TABLE IF NOT EXISTS visits (
 ALTER SEQUENCE visits_id_seq RESTART WITH 100;
 
 CREATE TABLE IF NOT EXISTS users (
-  username VARCHAR(20) NOT NULL ,
-  password VARCHAR(20) NOT NULL ,
+  username VARCHAR(50) NOT NULL ,
+  password VARCHAR(500) NOT NULL ,
   enabled boolean NOT NULL DEFAULT true ,
   CONSTRAINT pk_users PRIMARY KEY (username)
 );
 
-CREATE TABLE IF NOT EXISTS roles (
+CREATE TABLE IF NOT EXISTS authorities (
   id SERIAL,
   username varchar(20) NOT NULL,
-  role varchar(20) NOT NULL,
-  CONSTRAINT pk_roles PRIMARY KEY (id),
+  authority varchar(20) NOT NULL,
+  CONSTRAINT pk_authorities PRIMARY KEY (id),
   FOREIGN KEY (username) REFERENCES users (username)
 );
 
-ALTER TABLE roles ADD CONSTRAINT uni_username_role UNIQUE (role,username);
-ALTER SEQUENCE roles_id_seq RESTART WITH 100;
+ALTER TABLE authorities ADD CONSTRAINT uni_username_authority UNIQUE (authority,username);
+ALTER SEQUENCE authorities_id_seq RESTART WITH 100;
